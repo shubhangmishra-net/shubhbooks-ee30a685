@@ -1,0 +1,12 @@
+- [x] Make the book analytics embed show authentic covers, accurate short descriptions, and direct book links.
+- [x] Connect the achievement gallery to the books without disturbing the carousel.
+- [x] Improve search descriptions for both standalone embed pages and verify their interactions.
+- [x] Fix analytics page stuck on morning snapshot: refresh whenever newest snapshot is >30 min old, even same-day. Verified live.
+- [x] Fix GA4 tracking shim in src/lib/analytics.ts so visit pings reach Google. Verified: collect hits fire to G-H7NE6DQZG1 on /, /book-views, /promo on the live site.
+- [x] Build /promo QR ad screen: Fox cover, live reader count, QR to /book-views, BriBooks buy links, Rao cross-promo.
+- [x] Add /promo to sitemap.xml and reference sitemap from robots.txt.
+- [x] Rename the site to shubhbooks.lovable.app; sitemap, robots and the promo QR link updated; published and verified.
+- [ ] User formalities after the rename: Google Sites embeds, QR codes, BriBooks listing links, GA4 data-stream URL, new Search Console property + sitemap submit.
+- [ ] GSC: add new meta token sMFPqTRZTxguyKHkjAeqDsNq4FUTFybjG4rKI6PGx5w to head, reconnect connector with full webmasters scope, publish, verify + add property + submit sitemap for shubhbooks.lovable.app.
+- [ ] Ads advice for the site (pending user answers: goal + audience; Google Ads needs an 18+ account owner).
+- [ ] Run a fresh security scan before broad sharing (agent_security_v2 / app_mcp_deep results are stale for the newest commit).
