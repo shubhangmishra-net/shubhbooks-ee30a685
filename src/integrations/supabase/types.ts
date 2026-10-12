@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      book_view_snapshots: {
+        Row: {
+          book_id: string
+          fetched_at: string
+          id: string
+          snapshot_date: string
+          total_views: number
+        }
+        Insert: {
+          book_id: string
+          fetched_at?: string
+          id?: string
+          snapshot_date?: string
+          total_views: number
+        }
+        Update: {
+          book_id?: string
+          fetched_at?: string
+          id?: string
+          snapshot_date?: string
+          total_views?: number
+        }
+        Relationships: []
+      }
+      chat_questions: {
+        Row: {
+          asked_at: string
+          book: string
+          id: string
+          question: string
+        }
+        Insert: {
+          asked_at?: string
+          book?: string
+          id?: string
+          question: string
+        }
+        Update: {
+          asked_at?: string
+          book?: string
+          id?: string
+          question?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
