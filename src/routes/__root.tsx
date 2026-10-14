@@ -80,6 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "google-site-verification", content: "VQCC4TZJy08w5fjFHKUIH0rPL7Hj5uLlQoUJmlm5TSo" },
       { name: "google-site-verification", content: "sMFPqTRZTxguyKHkjAeqDsNq4FUTFybjG4rKI6PGx5w" },
+      { name: "google-site-verification", content: "xzd81s5M0dN286HSS5TwGjHLe_MnwjrX78M2lTEQQnY" },
     ],
     links: [
       {
