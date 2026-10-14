@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createOpenAI } from "@ai-sdk/openai";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
-import { createClient } from "@supabase/supabase-js";
 
 import { AUTHOR, BOOK_BASES, BRIBOOKS_URL, yearlyFromTotal } from "@/lib/book-data";
 import { getBookProfiles, profilesToPrompt } from "@/lib/book-profiles.server";
@@ -35,14 +34,15 @@ async function logQuestion(messages: UIMessage[]) {
 }
 
 async function loadStats() {
-  const sb = createClient(import.meta.env["VITE_SUPABASE_URL"], import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"], {
-    auth: { persistSession: false },
-  });
-  const { data } = await sb
+  // Snapshots are server-only (no public read); use the server client.
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { data, error } = await supabaseAdmin
     .from("book_view_snapshots")
-    .select("book_id,total_views,snapshot_date")
+    .select("book_id,total_views,snapshot_date,fetched_at")
     .order("snapshot_date", { ascending: false })
+    .order("fetched_at", { ascending: false })
     .limit(60);
+  if (error) console.error("chat stats read failed", error.message);
   return BOOK_BASES.map((b) => {
     const snaps = (data ?? []).filter((d) => d.book_id === b.id);
     const total = snaps[0]?.total_views ?? b.fallbackTotal;
