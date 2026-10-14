@@ -9,8 +9,11 @@ export const Route = createFileRoute("/api/public/refresh-views")({
     handlers: {
       POST: async ({ request }) => {
         const key = request.headers.get("apikey");
-        if (!key || (key !== process.env["SUPABASE_PUBLISHABLE_KEY"] && key !== process.env["VITE_SUPABASE_PUBLISHABLE_KEY"])) {
-          return new Response("Unauthorized", { status: 401 });
+        const keyOk = !!key && (key === process.env["SUPABASE_PUBLISHABLE_KEY"] || key === process.env["VITE_SUPABASE_PUBLISHABLE_KEY"]);
+        if (!keyOk) {
+          const { authenticateCronRequest } = await import("@/integrations/supabase/cron-auth");
+          const denied = await authenticateCronRequest(request);
+          if (denied) return denied;
         }
         const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
         const today = new Date().toISOString().slice(0, 10);
