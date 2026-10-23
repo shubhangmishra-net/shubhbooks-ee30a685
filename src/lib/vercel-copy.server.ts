@@ -26,7 +26,7 @@ export async function forwardToLovable(request: Request, path: "/api/chat" | "/a
 
 export async function refreshLovableCounts(publicKey: string, signal?: AbortSignal) {
   const response = await fetch(`${LOVABLE_ORIGIN}/api/public/refresh-views`, {
-    method: "POST", headers: { apikey: publicKey }, signal, redirect: "error",
+    method: "POST", headers: { apikey: publicKey }, signal: signal ?? null, redirect: "error",
   });
   if (!response.ok) throw new Error(`Book count refresh failed (${response.status})`);
 }
