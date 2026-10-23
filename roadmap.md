@@ -12,3 +12,4 @@
 - [ ] Run a fresh security scan before broad sharing (agent_security_v2 / app_mcp_deep results are stale for the newest commit).
 - [x] Prepare separate Vercel configuration, direct live book counts, streamed Lovable analyst proxy, and separate tracking; tests passed and real proxy questions returned current counts and follow-up totals.
 - [ ] Build, deploy, and verify the hosted Vercel copy (blocked: Vercel account token form skipped; suitable commercial hosting plan also required).
+- [ ] Diagnose uploaded Vercel failure and align the deployed repository and build command with the prepared copy.
