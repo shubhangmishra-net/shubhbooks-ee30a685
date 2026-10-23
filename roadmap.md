@@ -12,3 +12,6 @@
 - [ ] Run a fresh security scan before broad sharing (agent_security_v2 / app_mcp_deep results are stale for the newest commit).
 - [x] Prepare separate Vercel configuration, direct live book counts, streamed Lovable analyst proxy, and separate tracking; tests passed and real proxy questions returned current counts and follow-up totals.
 - [ ] Build, deploy, and verify the hosted Vercel copy (blocked: Vercel account token form skipped; suitable commercial hosting plan also required).
+- [x] Diagnose uploaded Vercel failure: deployed GitHub source has a truncated generated connection file and lacks vercel.json; current Lovable source is intact and proxy/routing tests pass.
+- [ ] Replace outdated Vercel repository source with the prepared copy and redeploy (requires user's source upload or Vercel/repository setup access).
+- [x] Confirm Vercel Analytics is mounted for the Vercel copy using @vercel/analytics/react, the supported integration for this React/TanStack app rather than Next.js.
