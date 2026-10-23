@@ -8,6 +8,8 @@ export const Route = createFileRoute("/api/public/refresh-views")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        const { isVercelCopy, forwardToLovable } = await import("@/lib/vercel-copy.server");
+        if (isVercelCopy()) return forwardToLovable(request, "/api/public/refresh-views");
         const key = request.headers.get("apikey");
         const keyOk = !!key && (key === process.env["SUPABASE_PUBLISHABLE_KEY"] || key === process.env["VITE_SUPABASE_PUBLISHABLE_KEY"]);
         if (!keyOk) {

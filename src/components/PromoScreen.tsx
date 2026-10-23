@@ -13,8 +13,10 @@ const FALLBACK_VIEWS = 350;
 
 export default function PromoScreen() {
   const [views, setViews] = useState<number>(FALLBACK_VIEWS);
+  const [analyticsUrl, setAnalyticsUrl] = useState(ANALYTICS_URL);
 
   useEffect(() => {
+    if (import.meta.env["VITE_VERCEL_COPY"] === "true") setAnalyticsUrl(`${window.location.origin}/book-views`);
     const load = () =>
       getLatestSnapshots()
         .catch(() => [])
@@ -82,7 +84,7 @@ export default function PromoScreen() {
 
             <div className="flex flex-col items-center gap-3 sm:flex-row">
               <div className="rounded-xl bg-white p-3 shadow-lg">
-                <QRCodeSVG value={ANALYTICS_URL} size={132} level="M" />
+                <QRCodeSVG value={analyticsUrl} size={132} level="M" />
               </div>
               <div className="text-sm text-muted-foreground">
                 <p className="font-semibold text-foreground">Scan with your phone</p>
@@ -95,7 +97,7 @@ export default function PromoScreen() {
 
             <div className="flex flex-wrap justify-center gap-3 sm:justify-start">
               <a
-                href={ANALYTICS_URL}
+                href={analyticsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-11 items-center rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-85"
