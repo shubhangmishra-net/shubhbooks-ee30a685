@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "installCommand": "bun install --frozen-lockfile",
+  "installCommand": "sh scripts/vercel-install.sh",
   "buildCommand": "bunx vite build --config vite.vercel.config.ts",
   "outputDirectory": ".vercel/output",
   "headers": [{
