@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "bun install --frozen-lockfile",
+  "buildCommand": "bunx vite build --config vite.vercel.config.ts",
+  "outputDirectory": ".vercel/output",
+  "headers": [{
+    "source": "/(.*)",
+    "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ]
+  }]
+}

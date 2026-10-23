@@ -61,6 +61,15 @@ export const Route = createFileRoute("/api/chat")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        const { isVercelCopy, forwardToLovable, refreshLovableCounts } = await import("@/lib/vercel-copy.server");
+        if (isVercelCopy()) {
+          try {
+            await refreshLovableCounts(import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"], request.signal);
+            return await forwardToLovable(request, "/api/chat");
+          } catch {
+            return new Response("Live counts or the analyst are unavailable right now. Please try again later.", { status: 502 });
+          }
+        }
         const body = (await request.json().catch(() => null)) as { messages?: UIMessage[] } | null;
         if (!body || !Array.isArray(body.messages)) {
           return new Response("Invalid request", { status: 400 });
@@ -75,7 +84,7 @@ export const Route = createFileRoute("/api/chat")({
           )
           .map((m) => ({ ...m, parts: m.parts.filter((p) => p && p.type === "text") }))
           .slice(-40);
-        if (body.messages.length === 0 || body.messages[body.messages.length - 1]!.role !== "user") {
+        if (body.messages.length === 0 || body.messages.at(-1)?.role !== "user") {
           return new Response("Please type a question.", { status: 400 });
         }
         const apiKey = process.env["LOVABLE_API_KEY"];
