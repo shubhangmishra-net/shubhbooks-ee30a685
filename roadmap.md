@@ -14,3 +14,4 @@
 - [ ] Build, deploy, and verify the hosted Vercel copy (blocked: Vercel account token form skipped; suitable commercial hosting plan also required).
 - [x] Diagnose uploaded Vercel failure: deployed GitHub source has a truncated generated connection file and lacks vercel.json; current Lovable source is intact and proxy/routing tests pass.
 - [ ] Replace outdated Vercel repository source with the prepared copy and redeploy (requires user's source upload or Vercel/repository setup access).
+- [x] Confirm Vercel Analytics is mounted for the Vercel copy using @vercel/analytics/react, the supported integration for this React/TanStack app rather than Next.js.
