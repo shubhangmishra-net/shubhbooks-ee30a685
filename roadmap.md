@@ -10,3 +10,5 @@
 - [x] GSC: shubhbooks.lovable.app verified, added as property, sitemap submitted.
 - [ ] Ads advice for the site (pending user answers: goal + audience; Google Ads needs an 18+ account owner).
 - [ ] Run a fresh security scan before broad sharing (agent_security_v2 / app_mcp_deep results are stale for the newest commit).
+- [ ] Prepare a separate Vercel deployment without changing Lovable hosting, preserving live counts and the AI analyst.
+- [ ] Verify the Vercel copy and deploy it (requires access to the user's Vercel account).
