@@ -4,6 +4,12 @@ The same three pages can run on Vercel without replacing Lovable hosting. Vercel
 
 ## Deploy
 
+### Uploaded failure on October 23
+
+The failed deployment used the older `shubhangmishra-net/shubhbooks` repository contents: its generated connection file is truncated, and it does not contain `vercel.json`. The current Lovable copy has an intact generated connection file and the separate Vercel settings. Adding a closing brace to the old file alone is not sufficient: its fetch helper also contains misplaced code and an invalid placeholder connection.
+
+Replace the old repository source with the current complete codebase, including the Vercel configuration and lockfile. Keep generated connection files intact. In Vercel, use **Other**, clear conflicting build/install overrides, or set Build Command to `bunx vite build --config vite.vercel.config.ts`, Install Command to `bun install --frozen-lockfile`, and Output Directory to `.vercel/output`. Redeploy the newest commit rather than the failed old snapshot.
+
 1. Import a repository containing this prepared code into Vercel, or deploy this folder with the Vercel CLI. An older repository copy will not include these changes.
 2. Select **Other** as the framework. `vercel.json` provides the install/build commands and Nitro Build Output API output directory.
 3. Retain the existing public `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, and `VITE_SUPABASE_PROJECT_ID` build settings. The project's `.env` contains only public configuration and server equivalents. Do not export managed secrets, private keys, or database passwords.
